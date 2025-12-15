@@ -3,6 +3,7 @@ using Asm.Server.Dtos;
 using Asm.Server.Dtos.ComboDtos;
 using Asm.Server.Helpers;
 using Asm.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Versioning;
@@ -140,6 +141,7 @@ namespace Asm.Server.Controllerss
         /// Sử dụng <b>multipart/form-data</b> để upload ảnh.
         /// </remarks>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ComboCreateDto request)
         {
@@ -190,7 +192,9 @@ namespace Asm.Server.Controllerss
         /// <summary>
         /// Cập nhật combo (cho phép đổi hình ảnh).
         /// </summary>
+        /// 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Update(int id, [FromForm] ComboUpdateDto request)
         {
@@ -247,6 +251,7 @@ namespace Asm.Server.Controllerss
         /// Xóa combo (soft delete – không xóa khỏi DB).
         /// </summary>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var combo = await _context.Combos.FindAsync(id);

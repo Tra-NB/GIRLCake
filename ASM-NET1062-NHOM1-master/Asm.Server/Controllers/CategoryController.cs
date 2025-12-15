@@ -1,6 +1,7 @@
 ﻿using Asm.Server.Data;
 using Asm.Server.Dtos.CategoryDtos;
 using Asm.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,7 @@ namespace Asm.Server.Controllers
         /// </summary>
         /// <returns>Danh sách các loại món</returns>
         /// <response code="200">Thành công</response>
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
         {
@@ -85,6 +87,7 @@ namespace Asm.Server.Controllers
         /// <response code="201">Tạo thành công</response>
         /// <response code="400">Dữ liệu không hợp lệ</response>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<CategoryDto>> Post([FromBody] CategoryCreateDto dto)
         {
             var category = new Category

@@ -3,6 +3,7 @@ using Asm.Server.Dtos.FoodDtos;
 using Asm.Server.Helpers;
 using Asm.Server.Models;
 using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -126,7 +127,7 @@ namespace Asm.Server.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         /// 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<FoodDto>> Post([FromForm] FoodCreateDto dto) 
         {
@@ -199,6 +200,7 @@ namespace Asm.Server.Controllers
         /// <param name="id"></param>
         /// <param name="dto"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromForm] FoodUpdateDto dto)
         {
@@ -256,7 +258,7 @@ namespace Asm.Server.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
