@@ -1,0 +1,43 @@
+@import './base.css';
+
+/* Khai báo màu sắc chung để dễ sửa đổi sau này */
+:root {
+  --primary-font: 'Quicksand', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0; /* Nên để 0 để màu nền tràn hết màn hình */
+  font-family: var(--primary-font);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  margin: 0 auto; /* auto để căn giữa nếu màn hình quá to */
+  padding: 0 2rem;
+  font-weight: normal;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1920px; /* (Tùy chọn) Giới hạn chiều rộng trên màn hình cực lớn */
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* Các class tiện ích xử lý văn bản */
+.page-content p,
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

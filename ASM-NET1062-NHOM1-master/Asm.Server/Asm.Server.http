@@ -1,0 +1,6 @@
+@Asm.Server_HostAddress = http://localhost:5136
+
+GET {{Asm.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
